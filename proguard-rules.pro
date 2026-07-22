@@ -1,11 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.RotaFinanceira" parent="android:style/Theme.Material.Light.NoActionBar">
-        <item name="android:fontFamily">sans</item>
-        <item name="android:colorAccent">#A8F06A</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">#0B0F0E</item>
-        <item name="android:navigationBarColor">#0B0F0E</item>
-        <item name="android:windowBackground">#0B0F0E</item>
-    </style>
-</resources>
+name: Gerar APK Android
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Baixar o projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar Android 35
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Compilar APK
+        run: gradle :app:assembleDebug --stacktrace
+
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: rota-financeira-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
+
