@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.rotafinanceira.app'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.rotafinanceira.app'
+        minSdk 24
+        targetSdk 35
+        versionCode 2
+        versionName '2.0.0'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+

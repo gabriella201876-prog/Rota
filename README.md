@@ -1,24 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+# ROTA
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="Rota Financeira"
-        android:roundIcon="@drawable/ic_launcher"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.RotaFinanceira"
-        android:usesCleartextTraffic="false">
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>
+Projeto Android do aplicativo ROTA.
+
+Para gerar o APK, abra a aba Actions do GitHub e execute o fluxo Gerar APK Android.
+
